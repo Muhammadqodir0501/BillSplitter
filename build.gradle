@@ -1,0 +1,38 @@
+// build.gradle
+
+plugins {
+    // Плагины Spring Boot и зависимостей Gradle
+    id 'java'
+    id 'org.springframework.boot' version '3.3.1'
+    id 'io.spring.dependency-management' version '1.1.5' // Управление версиями Spring
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral() // Стандартный репозиторий Maven
+}
+
+dependencies {
+    // Spring Boot Starter Web (включает Spring Core, Spring MVC, Jackson и встроенный Tomcat)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok (для автоматической генерации геттеров/сеттеров)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Тестирование
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+// Конфигурация для тестов
+tasks.named('test') {
+    useJUnitPlatform()
+}
